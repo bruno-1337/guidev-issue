@@ -33,7 +33,7 @@ def get_validrepos():
             continue
 
         repo.create_issue(title="Guia sem conteudo", body="Guia sem conteudo | Issue criado pelo verificador de população de guia para guiadevbrasil em https://github.com/bruno-1337/guidev-issue")
-
+        print('criei um issue em: '+ str(repo.name))
         validrepodic[repo.name] = commits
  
     return validrepodic
@@ -57,4 +57,3 @@ for repo in fulllist.items():
     print(repo)
 
 print (len(fulllist))
-
