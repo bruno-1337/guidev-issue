@@ -1,6 +1,6 @@
 from github import Github 
 import json
-
+import time
 
 f = open('authkey.json',)
 data = json.load(f)
@@ -21,6 +21,7 @@ def get_validrepos():
     reposwithissues = {}
     #go thru all repos in coutinho github
     for repo in coutinho.get_repos():
+        time.sleep(2)
         commits = get_commits(repo)
         issue = get_issues(repo)
         #check if repo has more than one issue
@@ -31,7 +32,8 @@ def get_validrepos():
         if commits > 8:
             print (str(repo.name) + ' has ' + str(commits) + ' commits, skipping')
             continue
-
+        
+        
         repo.create_issue(title="Guia sem conteudo", body="Guia sem conteudo | Issue criado pelo verificador de população de guia para guiadevbrasil em https://github.com/bruno-1337/guidev-issue")
         print('criei um issue em: '+ str(repo.name))
         validrepodic[repo.name] = commits
