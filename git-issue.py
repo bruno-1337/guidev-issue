@@ -25,6 +25,9 @@ def get_validrepos():
         commits = get_commits(repo)
         issue = get_issues(repo)
         #check if repo has more than one issue
+        if not ((repo.name).startswith("guiade")):
+            print(repo.name + ' não é um guia, skipping')
+            continue
         if issue > 0:
             print (str(repo.name) + ' has ' + str(issue) + ' issues, skipping')
             continue
@@ -34,7 +37,7 @@ def get_validrepos():
             continue
         
         
-        repo.create_issue(title="Guia sem conteudo", body="Guia sem conteudo | Issue criado pelo verificador de população de guia para guiadevbrasil em https://github.com/bruno-1337/guidev-issue")
+        # repo.create_issue(title="Guia sem conteudo", body="Guia sem conteudo | Issue criado pelo verificador de população de guia para guiadevbrasil em https://github.com/bruno-1337/guidev-issue")
         print('criei um issue em: '+ str(repo.name))
         validrepodic[repo.name] = commits
  
@@ -53,9 +56,4 @@ def get_commits(crepo):
         commit+=1
     return commit
 
-fulllist = get_validrepos()
-
-for repo in fulllist.items():
-    print(repo)
-
-print (len(fulllist))
+get_validrepos()
