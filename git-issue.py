@@ -2,19 +2,16 @@ from github import Github
 import json
 import time
 
+#lê o arquivo authkey.json para pegar a key da github api, o arquivo deve estar no mesmo local que o script
 f = open('authkey.json',)
 data = json.load(f)
 authk = data['authkey']
 
 g= Github(authk)
 
+#define qual o user do github que o programa deve inspecionar
 coutinho = g.get_user("arthurspk");
 
-# def get_coutinhorepos():
-#      repositorios = []
-#      for repo in coutinho.get_repos():
-#          repositorios.append(repo.name)
-#      return repositorios
 
 def get_validrepos():
     validrepodic = {}
@@ -37,7 +34,7 @@ def get_validrepos():
             continue
         
         
-        # repo.create_issue(title="Guia sem conteudo", body="Guia sem conteudo | Issue criado pelo verificador de população de guia para guiadevbrasil em https://github.com/bruno-1337/guidev-issue")
+        repo.create_issue(title="Guia sem conteudo", body="Guia sem conteudo | Issue criado pelo verificador de população de guia para guiadevbrasil em https://github.com/bruno-1337/guidev-issue")
         print('criei um issue em: '+ str(repo.name))
         validrepodic[repo.name] = commits
  
